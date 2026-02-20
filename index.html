@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Приглашение ✨</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card" id="card">
+            
+            <div id="step-1">
+                <div class="icon">✨</div>
+                <h1>Добрый вечер!</h1>
+                <p>Завтра ты свободна? Хотел бы позвать тебя погулять или в кино сходить.</p>
+                <div class="btn-group">
+                    <button id="yesBtn" class="btn-primary">Да, конечно! 😊</button>
+                    <button id="noBtn" class="btn-secondary">Нет</button>
+                </div>
+            </div>
+
+            <form id="inviteForm" style="display: none;">
+                <div class="icon">📍</div>
+                <h3>Куда заглянем?</h3>
+                <div class="custom-select">
+                    <select id="choice">
+                        <option value="Прогулка">Погулять по городу 🌳</option>
+                        <option value="Кино">Сходить в кино 🍿</option>
+                        <option value="Сюрприз">На твой вкус ✨</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">Подтвердить</button>
+            </form>
+
+            <div id="successMessage" style="display: none;">
+                <div class="icon">❤️</div>
+                <h2>Я очень рад!</h2>
+                <p>Завтра я тебе позвоню :)</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
