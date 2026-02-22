@@ -2,47 +2,64 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Приглашение ✨</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для тебя | Портрет</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
-    <div class="container">
-        <div class="card" id="card">
-            
-            <div id="step-1">
-                <div class="icon">✨</div>
-                <h1>Добрый вечер!</h1>
-                <p>Завтра ты свободна? Хотел бы позвать тебя погулять или в кино сходить.</p>
-                <div class="btn-group">
-                    <button id="yesBtn" class="btn-primary">Да, конечно! 😊</button>
-                    <button id="noBtn" class="btn-secondary">Нет</button>
-                </div>
-            </div>
-
-            <form id="inviteForm" style="display: none;">
-                <div class="icon">📍</div>
-                <h3>Куда заглянем?</h3>
-                <div class="custom-select">
-                    <select id="choice">
-                        <option value="Прогулка">Погулять по городу 🌳</option>
-                        <option value="Кино">Сходить в кино 🍿</option>
-                        <option value="Сюрприз">На твой вкус ✨</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn-primary">Подтвердить</button>
-            </form>
-
-            <div id="successMessage" style="display: none;">
-                <div class="icon">❤️</div>
-                <h2>Я очень рад!</h2>
-                <p>Завтра я тебе позвоню :)</p>
-            </div>
-
+    <div id="overlay" class="overlay">
+        <div class="intro-content">
+            <p>Я скоро уезжаю, но хотел оставить это здесь...</p>
+            <button id="startBtn">Включить атмосферу ✨</button>
         </div>
     </div>
+
+    <div id="mainContent" class="content hidden">
+        <div class="glass-card">
+            <header>
+                <h1>Твой портрет</h1>
+                <p class="subtitle">Мот — Портрет (background loop)</p>
+            </header>
+            
+            <div class="divider"></div>
+
+            <div id="formSection">
+                <p class="personal-msg">
+                    Знаешь, в поезде я не успел сказать, но у тебя безумно красивые глаза. 
+                    Они — лучшее воспоминание об Астане.
+                </p>
+
+                <div class="question-block">
+                    <label>Что ты думаешь обо мне?</label>
+                    <textarea id="opinion" placeholder="Твои честные мысли..."></textarea>
+                </div>
+
+                <div class="question-block">
+                    <label>на сколько тебе было интресно? </label>
+                    <div class="radio-group">
+                        <label class="radio-label"><input type="radio" name="attr" value="Да" required><span>было интересно</span></label>
+                        <label class="radio-label"><input type="radio" name="attr" value="Как друг"><span>ну так 50 на 50</span></label>
+                        <label class="radio-label"><input type="radio" name="attr" value="Секрет"><span>фигня полная.</span></label>
+                    </div>
+                </div>
+
+                <button id="sendBtn">Отправить и открыть обещание</button>
+            </div>
+
+            <div id="gift" class="hidden">
+                <div class="promise-box">
+                    <h3>Моё обещание 🎁</h3>
+                    <p>Спасибо за честность! Я обещаю тебе особенный подарок. Это будет что-то, что напомнит тебе о нашем странном, но очень крутом знакомстве, когда мы увидимся снова.</p>
+                    <p class="footer-note">До встречи, Астана!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="bgMusic" src="mot-portret.mp3" loop></audio>
 
     <script src="script.js"></script>
 </body>
