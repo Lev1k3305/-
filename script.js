@@ -3,10 +3,20 @@ const startBtn = document.getElementById('startBtn');
 const overlay = document.getElementById('overlay');
 const sendBtn = document.getElementById('sendBtn');
 
-// Нажатие на розовую кнопку "Нажми меня"
+// Запуск при клике
 startBtn.addEventListener('click', () => {
-    audio.volume = 0.4;
-    audio.play().catch(e => console.log("Музыка не смогла загрузиться"));
+    audio.volume = 0.5; // Сделаем чуть погромче для атмосферы
+    
+    // Пробуем играть
+    const playPromise = audio.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.then(() => {
+            console.log("Музыка пошла!");
+        }).catch(error => {
+            console.log("Браузер заблокировал автоплей: ", error);
+        });
+    }
 
     overlay.style.opacity = '0';
     setTimeout(() => {
@@ -15,18 +25,20 @@ startBtn.addEventListener('click', () => {
     }, 1000);
 });
 
+// Отправка данных
 sendBtn.addEventListener('click', async () => {
     const opinion = document.getElementById('opinion').value;
     const attraction = document.querySelector('input[name="attr"]:checked')?.value;
 
     if (!opinion || !attraction) {
-        alert("Пожалуйста, поделись мыслями...");
+        alert("Пожалуйста, ответь на вопросы, это важно для меня...");
         return;
     }
 
-    sendBtn.innerText = "Отправляю...";
-    
-    // Сюда вставь ссылку из Google Apps Script
+    sendBtn.innerText = "Записываю в память...";
+    sendBtn.disabled = true;
+
+    // СЮДА ВСТАВЬ ССЫЛКУ ИЗ GOOGLE SCRIPTS
     const scriptURL = 'ВСТАВЬ_СЮДА_URL';
     
     try {
@@ -44,8 +56,6 @@ sendBtn.addEventListener('click', async () => {
         particleCount: 150,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#ffb6c1', '#ffffff']
+        colors: ['#ffb6c1', '#ffffff', '#ff8fa3']
     });
 });
-
-
