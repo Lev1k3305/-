@@ -1,108 +1,75 @@
 body {
-    margin: 0;
-    padding: 0;
-    /* Твой стиль: черный с глубоким темно-зеленым свечением */
+    margin: 0; padding: 0;
     background: radial-gradient(circle at center, #0a1a0f 0%, #000 100%);
-    color: #fff;
-    font-family: 'Montserrat', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    color: #fff; font-family: 'Montserrat', sans-serif;
+    display: flex; justify-content: center; align-items: center;
     min-height: 100vh;
 }
 
 .overlay {
-    position: fixed;
-    inset: 0;
-    background: #000;
-    z-index: 100;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    transition: opacity 1s ease;
+    position: fixed; inset: 0; background: #000; z-index: 1000;
+    display: flex; justify-content: center; align-items: center;
+    transition: all 1.2s ease;
 }
 
-#startBtn {
-    background: transparent;
-    border: 1px solid #ffb6c1; /* Розовый акцент */
-    color: #ffb6c1;
-    padding: 15px 35px;
+/* Кнопка "Нажми меня" в розовом цвете */
+.push-btn {
+    background: #ffb6c1;
+    color: #000;
+    border: none;
+    padding: 20px 45px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50px;
     cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 182, 193, 0.6);
+    transition: transform 0.3s, box-shadow 0.3s;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
+}
+
+.push-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 40px rgba(255, 182, 193, 0.9);
 }
 
 .card {
-    background: rgba(0, 0, 0, 0.7);
-    border: 1px solid rgba(255, 182, 193, 0.3); /* Нежно-розовая рамка */
-    padding: 40px;
-    border-radius: 25px;
-    max-width: 400px;
-    width: 90%;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 182, 193, 0.3);
+    padding: 40px; border-radius: 30px;
+    max-width: 400px; width: 90%;
     box-shadow: 0 0 30px rgba(255, 182, 193, 0.1);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
 }
 
-.music-info {
-    font-size: 10px;
-    text-transform: uppercase;
-    color: #ffb6c1;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-}
-
-h1 { font-weight: 600; margin: 0 0 15px 0; color: #ffb6c1; }
-.msg { font-size: 14px; line-height: 1.6; color: #ccc; margin-bottom: 30px; }
-
-.input-group { text-align: left; margin-bottom: 20px; }
-label { font-size: 12px; display: block; margin-bottom: 8px; color: #ffb6c1; }
+.music-info { font-size: 10px; color: #ffb6c1; margin-bottom: 20px; letter-spacing: 2px; }
+h1 { color: #ffb6c1; margin-bottom: 15px; }
+.msg { font-size: 14px; line-height: 1.6; color: #ccc; margin-bottom: 25px; }
 
 textarea {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.05);
+    width: 100%; background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 182, 193, 0.2);
-    border-radius: 12px;
-    color: #fff;
-    padding: 12px;
-    font-family: inherit;
-    resize: none;
-    height: 70px;
+    border-radius: 12px; color: #fff; padding: 12px; height: 70px;
 }
 
-.radio-flex { display: flex; gap: 8px; }
+.radio-flex { display: flex; gap: 8px; margin-top: 10px; }
 .choice { flex: 1; cursor: pointer; }
 .choice input { display: none; }
 .choice span {
-    display: block;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    font-size: 12px;
-    text-align: center;
-    transition: 0.3s;
+    display: block; padding: 10px; background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px; font-size: 12px; text-align: center;
 }
 .choice input:checked + span { background: #ffb6c1; color: #000; font-weight: bold; }
 
 #sendBtn {
-    width: 100%;
-    background: #ffb6c1;
-    color: #000;
-    border: none;
-    padding: 15px;
-    border-radius: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
+    width: 100%; background: #ffb6c1; color: #000; border: none;
+    padding: 15px; border-radius: 12px; font-weight: bold;
+    cursor: pointer; margin-top: 20px;
 }
 
-/* Секция обещания */
-.promise-card {
-    animation: fadeIn 1s ease;
-}
-.promise-card h2 { color: #ffb6c1; font-size: 20px; }
+.promise-card { animation: fadeIn 1s ease; }
+.promise-card h2 { color: #ffb6c1; }
 .line { height: 1px; background: rgba(255, 182, 193, 0.3); margin: 20px 0; }
-.sub { font-size: 12px; opacity: 0.5; }
-
 .hidden { display: none; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
