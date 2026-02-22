@@ -16,23 +16,26 @@
 
     <div id="mainContent" class="content hidden">
         <div class="card">
-            <div class="music-info">playing: Мот — Портрет 🎵</div>
+            <div class="player-controls">
+                <button id="musicToggle" class="music-btn">🎵 Play/Pause</button>
+                <span class="music-info">Мот — Портрет</span>
+            </div>
             
             <div id="formSection">
                 <h1>Твой портрет</h1>
                 <p class="msg">Я скоро уезжаю из Астаны, но хотел оставить это здесь... У тебя безумно красивые глаза. Они — самое яркое воспоминание об этой поездке.</p>
                 
                 <div class="input-group">
-                    <label>Что ты думаешь обо мне?</label>
-                    <textarea id="opinion" placeholder="Твои честные мысли..."></textarea>
+                    <label>Что ты на самом деле думаешь обо мне?</label>
+                    <textarea id="opinion" placeholder="Твои мысли..."></textarea>
                 </div>
 
                 <div class="input-group">
-                    <label>Тебе было интересно со мной? </label>
+                    <label>Я тебе симпатичен? 😉</label>
                     <div class="radio-flex">
-                        <label class="choice"><input type="radio" name="attr" value="Да"><span>Конечно</span></label>
-                        <label class="choice"><input type="radio" name="attr" value="Как друг"><span>ну такое</span></label>
-                        <label class="choice"><input type="radio" name="attr" value="Секрет"><span>фигня полнвя</span></label>
+                        <label class="choice"><input type="radio" name="attr" value="Да"><span>Да</span></label>
+                        <label class="choice"><input type="radio" name="attr" value="Как друг"><span>Как друг</span></label>
+                        <label class="choice"><input type="radio" name="attr" value="Секрет"><span>Секрет</span></label>
                     </div>
                 </div>
 
@@ -55,4 +58,5 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
