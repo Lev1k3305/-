@@ -1,23 +1,15 @@
 const audio = document.getElementById('bgMusic');
 const startBtn = document.getElementById('startBtn');
+const musicToggle = document.getElementById('musicToggle');
 const overlay = document.getElementById('overlay');
 const sendBtn = document.getElementById('sendBtn');
 
-// Запуск при клике
-startBtn.addEventListener('click', () => {
-    audio.volume = 0.5; // Сделаем чуть погромче для атмосферы
-    
-    // Пробуем играть
-    const playPromise = audio.play();
-    
-    if (playPromise !== undefined) {
-        playPromise.then(() => {
-            console.log("Музыка пошла!");
-        }).catch(error => {
-            console.log("Браузер заблокировал автоплей: ", error);
-        });
-    }
+// Изначально громкость 50%
+audio.volume = 0.5;
 
+// Кнопка на главном экране
+startBtn.addEventListener('click', () => {
+    audio.play().catch(() => console.log("Нужен повторный клик по кнопке Play"));
     overlay.style.opacity = '0';
     setTimeout(() => {
         overlay.style.display = 'none';
@@ -25,20 +17,30 @@ startBtn.addEventListener('click', () => {
     }, 1000);
 });
 
-// Отправка данных
+// Кнопка управления внутри карточки
+musicToggle.addEventListener('click', () => {
+    if (audio.paused) {
+        audio.play();
+        musicToggle.innerText = "⏸ Pause";
+    } else {
+        audio.pause();
+        musicToggle.innerText = "▶ Play";
+    }
+});
+
+// Финал
 sendBtn.addEventListener('click', async () => {
     const opinion = document.getElementById('opinion').value;
     const attraction = document.querySelector('input[name="attr"]:checked')?.value;
 
     if (!opinion || !attraction) {
-        alert("Пожалуйста, ответь на вопросы, это важно для меня...");
+        alert("Пожалуйста, ответь на вопросы...");
         return;
     }
 
-    sendBtn.innerText = "Записываю в память...";
-    sendBtn.disabled = true;
-
-    // СЮДА ВСТАВЬ ССЫЛКУ ИЗ GOOGLE SCRIPTS
+    sendBtn.innerText = "Отправляю...";
+    
+    // Сюда вставь URL скрипта
     const scriptURL = 'ВСТАВЬ_СЮДА_URL';
     
     try {
@@ -56,6 +58,6 @@ sendBtn.addEventListener('click', async () => {
         particleCount: 150,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#ffb6c1', '#ffffff', '#ff8fa3']
+        colors: ['#ffb6c1', '#ffffff']
     });
 });
