@@ -1,75 +1,58 @@
-const noBtn = document.getElementById('noBtn');
-const yesBtn = document.getElementById('yesBtn');
-const step1 = document.getElementById('step-1');
-const inviteForm = document.getElementById('inviteForm');
-const successMessage = document.getElementById('successMessage');
+// 1. Вход и запуск музыки
+startBtn.addEventListener('click', () => {
+    audio.volume = 0.4; // Громкость 40%
+    audio.play();
 
-// 1. Убегающая кнопка "Нет"
-const moveButton = () => {
-    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-    
-    noBtn.style.position = 'fixed';
-    noBtn.style.left = `${x}px`;
-    noBtn.style.top = `${y}px`;
-};
-
-noBtn.addEventListener('mouseover', moveButton);
-noBtn.addEventListener('touchstart', (e) => {
-    e.preventDefault(); // Чтобы не кликнуло случайно на мобиле
-    moveButton();
+    overlay.style.opacity = '0';
+    setTimeout(() => {
+        overlay.style.display = 'none';
+        mainContent.classList.remove('hidden');
+    }, 1500);
 });
 
-// Если нажала на "Нет" (через confirm)
-noBtn.addEventListener('click', () => {
-    if (confirm("Точно нет? 🥺")) {
-        if (confirm("А если подумать?")) {
-            alert("Попробуй нажать левую кнопку!");
-        }
+// 2. Сбор данных и финал
+document.getElementById('sendBtn').addEventListener('click', async () => {
+    const opinion = document.getElementById('opinion').value;
+    const attraction = document.querySelector('input[name="attr"]:checked')?.value;
+
+    if (!opinion || !attraction) {
+        alert("Пожалуйста, заполни поля, мне это важно...");
+        return;
     }
-});
 
-// 2. Переход к выбору
-yesBtn.addEventListener('click', () => {
-    step1.style.display = 'none';
-    inviteForm.style.display = 'block';
-});
+    const btn = document.getElementById('sendBtn');
+    btn.innerText = "Записываю в память...";
+    btn.disabled = true;
 
-// 3. Финальная отправка
-inviteForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const choice = document.getElementById('choice').value;
-    
-    // ВСТАВЬ СВОЙ URL ИЗ GOOGLE APPS SCRIPT НИЖЕ
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwT4MpSDDREfEWTJbTKQdRIeJOZgbnmhHMBqUW0jaQF3iYrUViP1YZCrIIlnJ8cBvLW/exec'; 
+    // ДАННЫЕ ДЛЯ ОТПРАВКИ
+    const data = {
+        opinion: opinion,
+        attraction: attraction,
+        time: new Date().toLocaleString('ru-RU')
+    };
 
-    const submitBtn = inviteForm.querySelector('button');
-    submitBtn.innerText = 'Секундочку...';
-    submitBtn.disabled = true;
+    // ТВОЙ URL ИЗ GOOGLE APPS SCRIPT
+    const scriptURL = 'ВСТАВЬ_СЮДА_СВОЮ_ССЫЛКУ';
 
     try {
         await fetch(scriptURL, {
             method: 'POST',
             mode: 'no-cors',
-            body: JSON.stringify({
-                answer: 'Да',
-                choice: choice,
-                date: new Date().toLocaleString('ru-RU')
-            })
+            body: JSON.stringify(data)
         });
-    } catch (err) {
-        console.log('Error bypass for no-cors');
+    } catch (e) {
+        console.log("Error sending data");
     }
 
-    // Показываем успех в любом случае
-    inviteForm.style.display = 'none';
-    successMessage.style.display = 'block';
-
-    // Запуск конфетти!
+    // Показываем подарок
+    document.getElementById('formSection').classList.add('hidden');
+    document.getElementById('gift').classList.remove('hidden');
+    
+    // Эффект конфетти
     confetti({
         particleCount: 150,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#ff7675', '#fab1a0', '#fd79a8']
+        colors: ['#bb86fc', '#ffffff']
     });
 });
