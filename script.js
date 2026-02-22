@@ -3,10 +3,11 @@ const startBtn = document.getElementById('startBtn');
 const overlay = document.getElementById('overlay');
 const sendBtn = document.getElementById('sendBtn');
 
-// Старт: музыка и проявление контента
+// Нажатие на розовую кнопку "Нажми меня"
 startBtn.addEventListener('click', () => {
-    audio.volume = 0.3; // Тихий фон
-    audio.play();
+    audio.volume = 0.4;
+    audio.play().catch(e => console.log("Музыка не смогла загрузиться"));
+
     overlay.style.opacity = '0';
     setTimeout(() => {
         overlay.style.display = 'none';
@@ -14,20 +15,19 @@ startBtn.addEventListener('click', () => {
     }, 1000);
 });
 
-// Отправка и показ обещания
 sendBtn.addEventListener('click', async () => {
     const opinion = document.getElementById('opinion').value;
     const attraction = document.querySelector('input[name="attr"]:checked')?.value;
 
     if (!opinion || !attraction) {
-        alert("Заполни поля, чтобы я знал, что ты думаешь...");
+        alert("Пожалуйста, поделись мыслями...");
         return;
     }
 
-    sendBtn.innerText = "Сохраняю...";
+    sendBtn.innerText = "Отправляю...";
     
-    // ТВОЙ URL ИЗ GOOGLE SCRIPTS
-    const scriptURL = 'ВСТАВЬ_СЮДА_СВОЮ_ССЫЛКУ';
+    // Сюда вставь ссылку из Google Apps Script
+    const scriptURL = 'ВСТАВЬ_СЮДА_URL';
     
     try {
         await fetch(scriptURL, {
@@ -37,16 +37,15 @@ sendBtn.addEventListener('click', async () => {
         });
     } catch (e) {}
 
-    // Смена блоков
     document.getElementById('formSection').classList.add('hidden');
     document.getElementById('giftSection').classList.remove('hidden');
 
-    // Праздничный эффект в розовых тонах
     confetti({
         particleCount: 150,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#ffb6c1', '#ffffff', '#ff8fa3']
+        colors: ['#ffb6c1', '#ffffff']
     });
 });
+
 
