@@ -41,7 +41,7 @@ sendBtn.addEventListener('click', async () => {
     sendBtn.innerText = "Отправляю...";
     
     // Сюда вставь URL скрипта
-    const scriptURL = 'ВСТАВЬ_СЮДА_URL';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzT_TPIrTy6U9wkVr_Q_d-U6em7AKRJ5_wwbhlRZF226yn8GRs9N0y1wrc-5DqIr-8n/exec';
     
     try {
         await fetch(scriptURL, {
@@ -61,3 +61,4 @@ sendBtn.addEventListener('click', async () => {
         colors: ['#ffb6c1', '#ffffff']
     });
 });
+
