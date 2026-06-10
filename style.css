@@ -60,20 +60,45 @@ textarea {
 
 .radio-flex { display: flex; gap: 8px; margin-top: 10px; }
 .choice { flex: 1; cursor: pointer; }
-.choice input { display: none; }
+.choice input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
 .choice span {
     display: block; padding: 10px; background: rgba(255, 255, 255, 0.05);
     border-radius: 10px; font-size: 11px; text-align: center;
+    transition: 0.3s;
 }
 .choice input:checked + span { background: #ffb6c1; color: #000; font-weight: bold; }
+.choice input:focus-visible + span {
+    outline: 2px solid #ffb6c1;
+    outline-offset: 2px;
+}
+
+button:focus-visible, textarea:focus-visible {
+    outline: 2px solid #ffb6c1;
+    outline-offset: 2px;
+}
 
 #sendBtn {
     width: 100%; background: #ffb6c1; color: #000; border: none;
     padding: 15px; border-radius: 12px; font-weight: bold;
     cursor: pointer; margin-top: 20px;
+    transition: 0.3s;
+}
+
+#sendBtn:hover {
+    background: #ffa0b0;
+    box-shadow: 0 0 15px rgba(255, 182, 193, 0.4);
 }
 
 .hidden { display: none; }
 .promise-card { animation: fadeIn 1s ease; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
