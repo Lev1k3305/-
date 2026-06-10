@@ -17,21 +17,21 @@
     <div id="mainContent" class="content hidden">
         <div class="card">
             <div class="player-controls">
-                <button id="musicToggle" class="music-btn">🎵 Play/Pause</button>
+                <button id="musicToggle" class="music-btn" aria-label="Включить/пауза музыку">🎵 Play/Pause</button>
                 <span class="music-info">Мот — Портрет</span>
             </div>
-            
+
             <div id="formSection">
                 <h1>Твой портрет</h1>
                 <p class="msg">Я скоро уезжаю из Астаны, но хотел оставить это здесь... У тебя безумно красивые глаза. Они — самое яркое воспоминание об этой поездке.</p>
-                
+
                 <div class="input-group">
-                    <label>Что ты  думаешь обо мне?</label>
+                    <label for="opinion">Что ты думаешь обо мне?</label>
                     <textarea id="opinion" placeholder="Твои мысли..."></textarea>
                 </div>
 
                 <div class="input-group">
-                    <label>Как тебе общнение со мной?😉</label>
+                    <label>Как тебе общение со мной?😉</label>
                     <div class="radio-flex">
                         <label class="choice"><input type="radio" name="attr" value="Да"><span>было классно</span></label>
                         <label class="choice"><input type="radio" name="attr" value="Как друг"><span>было нормально</span></label>
@@ -58,6 +58,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-
-
