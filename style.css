@@ -9,7 +9,8 @@ body {
 .overlay {
     position: fixed; inset: 0; background: #000; z-index: 1000;
     display: flex; justify-content: center; align-items: center;
-    transition: all 1s ease;
+    transition: opacity 1s ease;
+    will-change: opacity;
 }
 
 .push-btn {
