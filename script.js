@@ -11,9 +11,9 @@ audio.volume = 0.5;
 startBtn.addEventListener('click', () => {
     audio.play().catch(() => console.log("Нужен повторный клик по кнопке Play"));
     overlay.style.opacity = '0';
+    document.getElementById('mainContent').classList.remove('hidden');
     setTimeout(() => {
         overlay.style.display = 'none';
-        document.getElementById('mainContent').classList.remove('hidden');
     }, 1000);
 });
 
@@ -43,14 +43,7 @@ sendBtn.addEventListener('click', async () => {
     // Сюда вставь URL скрипта
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxTQkdrRENCfnXzZxFt_YE08F0wrk2aoxqFGMViLI0Zy-foRh8TmRabjluVlOUQ5mo6/exec';
 
-    try {
-        await fetch(scriptURL, {
-            method: 'POST',
-            mode: 'no-cors',
-            body: JSON.stringify({ opinion, attraction, date: new Date().toLocaleString() })
-        });
-    } catch (e) {}
-
+    // Optimistically update UI
     document.getElementById('formSection').classList.add('hidden');
     document.getElementById('giftSection').classList.remove('hidden');
 
@@ -60,4 +53,13 @@ sendBtn.addEventListener('click', async () => {
         origin: { y: 0.6 },
         colors: ['#ffb6c1', '#ffffff']
     });
+
+    try {
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            keepalive: true,
+            body: JSON.stringify({ opinion, attraction, date: new Date().toLocaleString() })
+        });
+    } catch (e) {}
 });
